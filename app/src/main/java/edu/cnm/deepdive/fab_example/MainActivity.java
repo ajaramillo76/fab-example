@@ -40,17 +40,7 @@ public class MainActivity extends AppCompatActivity {
     adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
     myListView.setAdapter(adapter);
 
-    FloatingActionButton fab = findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        addListItem();
-        Snackbar.make(view, "Item added to list", Snackbar.LENGTH_LONG)
-            .setAction("Undo", undoOnClickListener).show();
-      }
-    });
-
-    View.OnClickListener undoOnClickListener = new View.OnClickListener() {
+    final View.OnClickListener undoOnClickListener = new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         listItems.remove(listItems.size() - 1);
@@ -60,6 +50,17 @@ public class MainActivity extends AppCompatActivity {
       }
     };
 
+
+    FloatingActionButton fab = findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+
+      @Override
+      public void onClick(View view) {
+        addListItem();
+        Snackbar.make(view, "Item added to list", Snackbar.LENGTH_LONG)
+            .setAction("Undo", undoOnClickListener).show();
+      }
+    });
 
   }
 
